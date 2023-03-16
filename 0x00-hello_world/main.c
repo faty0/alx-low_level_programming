@@ -7,6 +7,5 @@
  */
 int main(void)
 {
-	printf("This is my string");
 	return (0);
 }
