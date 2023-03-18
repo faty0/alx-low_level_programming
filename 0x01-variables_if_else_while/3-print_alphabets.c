@@ -9,18 +9,17 @@ int main(void)
 {
 	char c;
 
-	c = 'A';
+	c = 'a';
 	while (c <= 'z')
 	{
-		if (c == '[')
-		{
-			c += 6;
-			putchar('\n');
-		} else
-		{
-			putchar(c);
-			c += 1;
-		}
+		putchar(c);
+		c += 1;
+	}
+	c = 'A';
+	while (c <= 'Z')
+	{
+		putchar(c);
+		c += 1;
 	}
 	putchar('\n');
 	return (0);
