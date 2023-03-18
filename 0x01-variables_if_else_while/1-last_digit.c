@@ -9,8 +9,8 @@
 int main(void)
 {
 	int n, i, j, c, isNegative;
-	float a;
-	char l, stringg[10];
+	int a;
+	char l, stringg[30];
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
