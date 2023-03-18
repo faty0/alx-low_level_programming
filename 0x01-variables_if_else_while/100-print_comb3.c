@@ -23,8 +23,8 @@ int main(void)
 			n += 1;
 			if (c != 56)
 			{
-				putchar(s);
 				putchar(d);
+				putchar(s);
 			}
 		}
 		dec += 1;
