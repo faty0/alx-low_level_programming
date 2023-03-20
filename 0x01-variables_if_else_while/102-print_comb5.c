@@ -23,7 +23,7 @@ int main(void)
 			{
 				while (d <= 57)
 				{
-					if ((a + b) < (c + d))
+					if ((a * 10 + b) < (c * 10 + d))
 					{
 						putchar(a);
 						putchar(b);
