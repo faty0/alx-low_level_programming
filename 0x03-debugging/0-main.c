@@ -7,8 +7,9 @@
  */
 int main(void)
 {
-	char result[] = positive_or_negative(0);
+	int i;
 
-	printf("%s", result);
+	i = 0;
+	positive_or_negative(i);
 	return (0);
 }
