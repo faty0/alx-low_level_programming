@@ -1,0 +1,3 @@
+This is a README file for my new project 
+about Pointers Arrays Strings
+More description to come ....
