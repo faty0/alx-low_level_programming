@@ -19,7 +19,7 @@ int _strcmp(char *s1, char *s2)
 	{
 		if (s1[k] != s2[k])
 			return (s1[k] - s2[k]);
-		k++;		
+		k++;
 	}
 	return (0);
 }
