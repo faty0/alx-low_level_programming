@@ -13,7 +13,7 @@ char *leet(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		for (j = 0; j < 15; j++)
+		for (j = 0; j < 19; j++)
 		{
 			if (str[i] == code[j] && (str[i] < '0' || str[i] > '9'))
 			{
