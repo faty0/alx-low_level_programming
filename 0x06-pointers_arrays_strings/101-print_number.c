@@ -27,6 +27,7 @@ void print_number(int n)
 			tens *= 10;
 		}
 		l = (n / tens) % 10;
+		_putchar(l + '0');
 		i--;
 		tens = 1;
 	}
