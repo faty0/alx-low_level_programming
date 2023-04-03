@@ -8,11 +8,14 @@
  */
 int main(void)
 {
-    char *s = "hello, world I love u all";
-    char *f = "u";
+    char *s = "hello";
+    char *f = "hellow";
     char *t;
 
     t = _strstr(s, f);
-    printf("%s\n", t);
+	if (t != 0)
+    	printf("%s\n", t);
+	else
+    	printf("nuuuuuull\n");
     return (0);
 }
