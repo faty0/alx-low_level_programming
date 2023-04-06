@@ -10,4 +10,6 @@ int _sqrt_recursion(int n);
 int _square(int nu, int r);
 int is_prime_number(int n);
 int _calculate_divisors(int n, int next);
+int is_palindrome(char *s);
+int _cmp_palindrome(char *s, int k);
 #endif /* MAIN_H */
