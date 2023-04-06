@@ -1,6 +1,10 @@
 #include "main.h"
 /**
- * _getlen -
+ * _getlen - calculate length of a string
+ * @s: the string to perfom calculation on
+ * @start: starting point of calculation
+ *
+ * Return: length of the string
 */
 int _getlen(char *s, int start)
 {
@@ -34,5 +38,6 @@ int _cmp_palindrome(char *s, int k)
 int is_palindrome(char *s)
 {
 	char *ss = s;
+
 	return (_cmp_palindrome(s, (_getlen(ss, 0) - 1)));
 }
