@@ -1,5 +1,14 @@
 #include "main.h"
 /**
+ * _getlen -
+*/
+int _getlen(char *s, int start)
+{
+	if (*s != '\0')
+		return (_getlen(s + 1, start + 1));
+	return (start);
+}
+/**
  * _cmp_palindrome - compare the first and the last cahracter
  * @s: pointer to first character
  * @k: index of last character
@@ -24,10 +33,6 @@ int _cmp_palindrome(char *s, int k)
 */
 int is_palindrome(char *s)
 {
-	int k;
-
-	k = 0;
-	while (*(s + k) != '\0')
-		k++;
-	return (_cmp_palindrome(s, (k - 1)));
+	char *ss = s;
+	return (_cmp_palindrome(s, (_getlen(ss, 0) - 1)));
 }
