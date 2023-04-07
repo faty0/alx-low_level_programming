@@ -34,5 +34,9 @@ int main(void)
     printf("%d\n", r);
     r = wildcmp("abc", "*b");
     printf("%d\n", r);
+    r = wildcmp("main.c", "ma***********************************d");
+    printf("%d\n", r);
+    r = wildcmp("holberton-holberton.c", "holbe*rton.c");
+    printf("%d\n", r);
     return (0);
 }
