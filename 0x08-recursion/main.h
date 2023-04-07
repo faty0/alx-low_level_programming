@@ -12,4 +12,5 @@ int is_prime_number(int n);
 int _calculate_divisors(int n, int next);
 int is_palindrome(char *s);
 int _cmp_palindrome(char *s, int k);
+int wildcmp(char *s1, char *s2);
 #endif /* MAIN_H */
