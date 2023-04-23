@@ -74,8 +74,11 @@ void print_all(const char * const format, ...)
 			{
 				f_ptr = tys[j].f;
 				f_ptr(ap);
-				printf(",");
-				printf(" ");
+				if (j == 3)
+				{
+					printf(",");
+					printf(" ");
+				}
 				break;
 			}
 			j++;
