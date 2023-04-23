@@ -38,10 +38,12 @@ void print_float(va_list arg)
 void print_string(va_list arg)
 {
 	char *temp = va_arg(arg, char *);
-	if (temp != NULL)
-		printf("%s", temp);
-	else
+	if (temp == NULL)
+	{
 		printf("(nil)");
+		return;
+	}
+	printf("%s", temp);
 }
 /**
  * print_all - Prints anything
