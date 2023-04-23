@@ -11,6 +11,6 @@ int main(void)
     char *d;
 
     d = NULL;
-    print_all("cishds", 'B', 3, "stSchool", d);
+    print_all("cisds", 'B', 3, d);
     return (0);
 }

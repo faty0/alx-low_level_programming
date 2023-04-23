@@ -52,33 +52,62 @@ void print_string(va_list arg)
 */
 void print_all(const char * const format, ...)
 {
-	ty_t tys[] = {
-		{"c", print_char},
-		{"i", print_integer},
-		{"f", print_float},
-		{"s", print_string},
-		{NULL, NULL}
-	};
-	int i, j;
-	void (*f_ptr)(va_list arg);
-	va_list ap;
+	int i, j, l;
+	va_list ap, ap_copy;
 
-	i = 0;
+	i = l = 0;
 	va_start(ap, format);
+	va_copy(ap_copy, ap);
+	while(format[i] != '\0')
+	{
+		switch (format[i])
+		{
+		case 'c':
+			l++;
+			break;
+		case 's':
+			l++;
+			break;
+		case 'i':
+			l++;
+			break;
+		case 'f':
+			l++;
+			break;
+		default:
+			i++;
+			continue;
+		}
+		i++;
+	}
+	i = 0;
+	j = 0;
 	while (format[i] != '\0')
 	{
-		j = 0;
-		while (tys[j].ty != NULL)
+		switch (format[i])
 		{
-			if (format[i] == *(tys[j].ty))
-			{
-				f_ptr = tys[j].f;
-				f_ptr(ap);
-				printf(", ");
-				break;
-			}
+		case 'c':
+			print_char(ap);
 			j++;
+			break;
+		case 's':
+			print_string(ap);
+			j++;
+			break;
+		case 'i':
+			print_integer(ap);
+			j++;
+			break;
+		case 'f':
+			print_float(ap);
+			j++;
+			break;
+		default:
+			i++;
+			continue;
 		}
+		if (j != l)
+			printf(", ");
 		i++;
 	}
 	va_end(ap);
