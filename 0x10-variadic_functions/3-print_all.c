@@ -9,7 +9,7 @@
 */
 void print_char(va_list arg)
 {
-	int d = (char) va_arg(arg, int);
+	char d = (char) va_arg(arg, int);
 
 	printf("%c", d);
 }
@@ -74,11 +74,7 @@ void print_all(const char * const format, ...)
 			{
 				f_ptr = tys[j].f;
 				f_ptr(ap);
-				if (j == 3)
-				{
-					printf(",");
-					printf(" ");
-				}
+				printf(", ");
 				break;
 			}
 			j++;
