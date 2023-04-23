@@ -1,6 +1,8 @@
 #ifndef VARIADIC_FUNCTIONS
 #define VARIADIC_FUNCTIONS
 
+#include <stdarg.h>
+
 /**
  * struct ty - Struct ty
  *
@@ -10,7 +12,7 @@
 typedef struct ty
 {
 	char *ty;
-	void (*f)(void* arg);
+	void (*f)(va_list ar);
 } ty_t;
 
 int sum_them_all(const unsigned int n, ...);

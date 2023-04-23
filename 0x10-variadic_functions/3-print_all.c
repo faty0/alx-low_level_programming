@@ -1,42 +1,51 @@
 #include "variadic_functions.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 /**
- * print_char -
+ * print_char - print a character
+ * @arg: the character to print
 */
-void print_char(void *arg)
+void print_char(va_list arg)
 {
-	char* d = (char*)arg;
-	printf("%c", *d);
+	int d = (char) va_arg(arg, int);
+
+	printf("%c", d);
 }
 /**
- * print_integer -
+ * print_integer - print an integer
+ * @arg: the integer to print
 */
-void print_integer(void *arg)
+void print_integer(va_list arg)
 {
-	int* d = (int*)arg;
-	printf("%d", *d);
+	printf("%d", va_arg(arg, int));
 }
 /**
- * print_float -
+ * print_float - print a float
+ * @arg: the float to print
 */
-void print_float(void *arg)
+void print_float(va_list arg)
 {
-	float* d = (float*)arg;
-	printf("%f", *d);
+	float d = (float) va_arg(arg, double);
+
+	printf("%f", d);
 }
 /**
- * print_string -
+ * print_string - print a string
+ * @arg: the string to print
 */
-void print_string(void *arg)
+void print_string(va_list arg)
 {
-	char* d = (char*)arg;
-	printf("%s", d);
+	char *temp = va_arg(arg, char *);
+	if (temp != NULL)
+		printf("%s", temp);
+	else
+		printf("(nil)");
 }
 /**
  * print_all - Prints anything
- * @format: 
+ * @format: The format of what to printt
 */
 void print_all(const char * const format, ...)
 {
@@ -48,21 +57,23 @@ void print_all(const char * const format, ...)
 		{NULL, NULL}
 	};
 	int i, j;
-	char *temp;
-	void (*f_ptr)(void*);
+	void (*f_ptr)(va_list arg);
 	va_list ap;
 
 	i = 0;
 	va_start(ap, format);
-	while (*(format + i) != '\0')
+	while (format[i] != '\0')
 	{
 		j = 0;
 		while (tys[j].ty != NULL)
 		{
-			if (*(format + i) == tys[j].ty)
+			if (format[i] == *(tys[j].ty))
 			{
 				f_ptr = tys[j].f;
-
+				f_ptr(ap);
+				printf(",");
+				printf(" ");
+				break;
 			}
 			j++;
 		}
