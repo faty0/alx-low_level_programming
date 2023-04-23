@@ -4,61 +4,17 @@
 #include <stdlib.h>
 #include <string.h>
 /**
- * print_char - print a character
- * @arg: the character to print
+ * arg_count - Counts arguments using format string
+ * @format: the format string
+ *
+ * Return: the arguments count
 */
-void print_char(va_list arg)
+int arg_count(const char * const format)
 {
-	char d = (char) va_arg(arg, int);
-
-	printf("%c", d);
-}
-/**
- * print_integer - print an integer
- * @arg: the integer to print
-*/
-void print_integer(va_list arg)
-{
-	printf("%d", va_arg(arg, int));
-}
-/**
- * print_float - print a float
- * @arg: the float to print
-*/
-void print_float(va_list arg)
-{
-	float d = (float) va_arg(arg, double);
-
-	printf("%f", d);
-}
-/**
- * print_string - print a string
- * @arg: the string to print
-*/
-void print_string(va_list arg)
-{
-	char *temp = va_arg(arg, char *);
-
-	if (temp == NULL)
-	{
-		printf("(nil)");
-		return;
-	}
-	printf("%s", temp);
-}
-/**
- * print_all - Prints anything
- * @format: The format of what to printt
-*/
-void print_all(const char * const format, ...)
-{
-	int i, j, l;
-	va_list ap, ap_copy;
+	int l, i;
 
 	i = l = 0;
-	va_start(ap, format);
-	va_copy(ap_copy, ap);
-	while(format[i] != '\0')
+	while (format[i] != '\0')
 	{
 		switch (format[i])
 		{
@@ -80,26 +36,50 @@ void print_all(const char * const format, ...)
 		}
 		i++;
 	}
-	i = 0;
-	j = 0;
+	return (l);
+}
+/**
+ * print_all - Prints anything
+ * @format: The format of what to print
+*/
+void print_all(const char * const format, ...)
+{
+	int i, j, l;
+	float d;
+	char c;
+	char *temp;
+	va_list ap;
+
+	i = j = 0;
+	va_start(ap, format);
+	l = arg_count(format);
 	while (format[i] != '\0')
 	{
 		switch (format[i])
 		{
 		case 'c':
-			print_char(ap);
+			c = (char) va_arg(ap, int);
+			printf("%c", c);
 			j++;
 			break;
 		case 's':
-			print_string(ap);
+			temp = va_arg(ap, char *);
+			if (temp == NULL)
+			{
+				printf("(nil)");
+				j++;
+				break;
+			}
+			printf("%s", temp);
 			j++;
 			break;
 		case 'i':
-			print_integer(ap);
+			printf("%d", va_arg(ap, int));
 			j++;
 			break;
 		case 'f':
-			print_float(ap);
+			d = (float) va_arg(ap, double);
+			printf("%f", d);
 			j++;
 			break;
 		default:
