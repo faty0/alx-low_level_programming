@@ -34,7 +34,7 @@ list_t *add_node(list_t **head, const char *str)
 		free(new);
 		return (NULL);
 	}
-	if (str == NULL or str == "")
+	if (str == NULL || str == "")
 	{
 		new->str = NULL;
 		new->len = 0;
