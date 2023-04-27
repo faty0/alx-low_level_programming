@@ -1,5 +1,4 @@
 #include "lists.h"
-#include <string.h>
 /**
  * _strlen - Return the length of a string
  *@s: the string to calcullate its lenght
@@ -29,7 +28,7 @@ list_t *add_node(list_t **head, const char *str)
 {
 	list_t *new = malloc(sizeof(list_t));
 
-	if (head == NULL || new == NULL)
+	if (*head == NULL || new == NULL)
 	{
 		free(new);
 		return (NULL);
