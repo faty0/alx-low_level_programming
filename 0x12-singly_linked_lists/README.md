@@ -4,4 +4,4 @@ Today's project is about singly linked list in C
 which is a data structure's type that is linear
 and dymanic, while Arrays are linear and static
 So, linked list seems to be intresting as they allow 
-to dynamicaally allocate memory.
+to dynamically allocate memory.
