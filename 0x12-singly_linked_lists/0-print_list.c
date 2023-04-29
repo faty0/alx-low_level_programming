@@ -7,22 +7,13 @@
 */
 size_t print_list(const list_t *h)
 {
-	list_t *head = NULL;
-	size_t n;
+	size_t n = 0;
 
-	n = 0;
-	if (h == NULL)
-		return (0);
-	head = malloc(sizeof(list_t));
-	*head = *h;
-	while (head != NULL)
+	while (h)
 	{
 		n++;
-		if (head->str == NULL)
-			printf("[0] (nil)\n");
-		else
-			printf("[%d] %s\n", head->len, head->str);
-		head = head->next;
+		printf("[%d] %s\n", h->len, (h->str ? h->str : "(nil)"));
+		h = h->next;
 	}
 	return (n);
 }
