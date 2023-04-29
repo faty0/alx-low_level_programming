@@ -37,7 +37,7 @@ int main(void)
     add_node(&head, "Rona");
     add_node(&head, "Siphan");
     add_node(&head, "Sravanthi");
-    add_node(&head, NULL);
+    add_node(&head, "Steven");
     add_node(&head, "");
     add_node(&head, "William");
     add_node(&head, "Zee");
