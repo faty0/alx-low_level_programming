@@ -9,14 +9,13 @@
 */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	unsigned int c = 0, mask = 1;
-
+	int c = 0;
 	n = n ^ m;
-	while (mask)
+	while (n)
 	{
-		if (n & mask)
+		if (n & 1)
 			c++;
-		mask >>= 1;
+		n >>= 1;
 	}
 	return (c);
 }
