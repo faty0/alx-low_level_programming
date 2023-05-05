@@ -9,6 +9,8 @@ void print_binary(unsigned long int n)
 	int first = 0, bits = (sizeof(n) * 8) - 1;
 
 	mask <<= bits;
+	if (!n)
+		_putchar('0');
 	while (mask)
 	{
 		if (mask & n)
