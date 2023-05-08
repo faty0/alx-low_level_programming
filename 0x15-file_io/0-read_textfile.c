@@ -22,10 +22,11 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		c = fgetc(p);
 		l++;
 		if (c == EOF)
+		{
+			l--;
 			break;
-		r = write(STDOUT_FILENO, &c, 1);
-		if (r == -1)
-			return (0);
+		}
+		write(STDOUT_FILENO, &c, 1);
 	}
 	fclose(p);
 	return (l);
