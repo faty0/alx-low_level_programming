@@ -10,24 +10,30 @@
 */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	FILE *p = fopen(filename, "r");
-	size_t l = 0;
-	char c;
+	int fd = open(filename, O_RDONLY);
+	char *buf;
+	ssize_t l;
+	size_t i = 0;
 
-	if (!filename || !p)
+	if (!filename || fd == -1)
 		return (0);
-	while (l < letters)
+	buf = malloc(letters * sizeof(char));
+	if (!buf)
+		return (0);
+	l = read(fd, buf, letters);
+	if (l == -1)
 	{
-		c = fgetc(p);
-		l++;
-		if (c == EOF)
-		{
-			if (l == 1)
-				l = 0;
-			break;
-		}
-		write(STDOUT_FILENO, &c, 1);
+		free(buf);
+		return (0);
 	}
-	fclose(p);
-	return (l);
+	while (*(buf + i))
+	{
+		write(STDOUT_FILENO, &(*(buf + i)), 1);
+		i++;
+	}
+	if (letters > i)
+		i++;
+	free(buf);
+	close(fd);
+	return (i);
 }
