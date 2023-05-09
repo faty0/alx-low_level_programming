@@ -63,7 +63,7 @@ int main(int ac, char **av)
 	if (close(fd2) < 0)
 	{
 		free(buffer);
-		printf(2, "Error: Can't close fd %d\n", fd2);
+		dprintf(2, "Error: Can't close fd %d\n", fd2);
 		exit(100);
 	}
 	free(buffer);
