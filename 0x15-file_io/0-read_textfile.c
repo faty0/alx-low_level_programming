@@ -28,11 +28,9 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		free(buf);
 		return (0);
 	}
-	if (letters > (size_t)l)
-		l++;
-	l = write(STDOUT_FILENO, buf, l);
-	if (l < 0)
+	if (l < 0 || write(STDOUT_FILENO, buf, l) < 0)
 	{
+		close(fd);
 		free(buf);
 		return (0);
 	}
