@@ -1,4 +1,11 @@
 #include "main.h"
+/***/
+int handle_close(int fd, char **b)
+{
+	free(*b);
+	dprintf(2, "Error: Can't close fd %d\n", fd);
+	return (100);
+}
 /**
  * main - Copy the content of a file to another file
  * @ac: number of arguments
@@ -34,7 +41,6 @@ int main(int ac, char **av)
 	{
 		close(fd1);
 		close(fd2);
-		dprintf(2, "Error: Failed to allocate memory\n");
 		exit(1);
 	}
 	while (r != 0)
@@ -55,17 +61,9 @@ int main(int ac, char **av)
 		}
 	}
 	if (close(fd1) < 0)
-	{
-		free(buffer);
-		dprintf(2, "Error: Can't close fd %d\n", fd1);
-		exit(100);
-	}
+		exit(handle_close(fd1, &buffer));
 	if (close(fd2) < 0)
-	{
-		free(buffer);
-		dprintf(2, "Error: Can't close fd %d\n", fd2);
-		exit(100);
-	}
+		exit(handle_close(fd2, &buffer));
 	free(buffer);
 	return (0);
 }
