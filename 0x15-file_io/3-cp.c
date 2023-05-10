@@ -60,7 +60,7 @@ int main(int ac, char **av)
 	char *buffer;
 	int n;
 
-	if (ac != 3 || !strlen(av[1]) || !strlen(av[2]))
+	if (ac != 3)
 	{
 		dprintf(2, "Usage: cp file_from file_to\n");
 		exit(97);
