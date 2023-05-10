@@ -21,14 +21,14 @@ int copy_file(int *fd1, int *fd2, char **buffer, char *a1, char *a2)
 
 	while (r != 0)
 	{
-		r = read(fd1, *buffer, 1024);
+		r = read(*fd1, *buffer, 1024);
 		if (r < 0)
 		{
 			free(*buffer);
 			dprintf(2, "Error: Can't read from file %s\n", a1);
 			return(98);
 		}
-		w = write(fd2, *buffer, r);
+		w = write(*fd2, *buffer, r);
 		if (w < 0)
 		{
 			free(*buffer);
