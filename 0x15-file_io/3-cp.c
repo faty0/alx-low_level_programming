@@ -14,6 +14,15 @@ int handle_close(int fd, char **b)
 }
 /**
  * copy_file - Copy from file to file
+ * @fd1: pointer to first file descriptor
+ * @fd2: pointer to second file descriptor
+ * @buffer: adress of buffer
+ * @a1: name of first file
+ * @a2: name of second file
+ *
+ * Return: 1 on success
+ * 98 fail to read
+ * 99 fail to write
 */
 int copy_file(int *fd1, int *fd2, char **buffer, char *a1, char *a2)
 {
@@ -26,14 +35,14 @@ int copy_file(int *fd1, int *fd2, char **buffer, char *a1, char *a2)
 		{
 			free(*buffer);
 			dprintf(2, "Error: Can't read from file %s\n", a1);
-			return(98);
+			return (98);
 		}
 		w = write(*fd2, *buffer, r);
 		if (w < 0)
 		{
 			free(*buffer);
 			dprintf(2, "Error: Can't write to %s\n", a2);
-			return(99);
+			return (99);
 		}
 	}
 	return (1);
@@ -69,12 +78,6 @@ int main(int ac, char **av)
 		exit(99);
 	}
 	buffer = malloc(1024);
-	/* if (!buffer)
-	{
-		close(fd1);
-		close(fd2);
-		exit(1);
-	} */
 	n = copy_file(&fd1, &fd2, &buffer, av[1], av[2]);
 	if (n != 1)
 		exit(n);
