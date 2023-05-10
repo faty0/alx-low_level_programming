@@ -66,12 +66,12 @@ int main(int ac, char **av)
 		exit(97);
 	}
 	fd1 = open(av[1], O_RDONLY);
-	fd2 = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd1 < 0)
 	{
 		dprintf(2, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
+	fd2 = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd2 < 0)
 	{
 		dprintf(2, "Error: Can't write to %s\n", av[2]);
