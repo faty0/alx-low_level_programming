@@ -60,7 +60,7 @@ int main(int ac, char **av)
 	char *buffer;
 	int n;
 
-	if (ac != 3)
+	if (ac != 3 || !strcmp(av[1], "") || !strcmp(av[2], ""))
 	{
 		dprintf(2, "Usage: cp file_from file_to\n");
 		exit(97);
