@@ -1,10 +1,42 @@
 #include "main.h"
-/***/
+/**
+ * handle_close - free buffer when close() fails
+ * @fd: file descriptor that failed to close
+ * @b: buffer to free
+ *
+ * Return: Always 100
+*/
 int handle_close(int fd, char **b)
 {
 	free(*b);
 	dprintf(2, "Error: Can't close fd %d\n", fd);
 	return (100);
+}
+/**
+ * copy_file - Copy from file to file
+*/
+int copy_file(int *fd1, int *fd2, char **buffer, char *a1, char *a2)
+{
+	int r = -1, w;
+
+	while (r != 0)
+	{
+		r = read(fd1, buffer, 1024);
+		if (r < 0)
+		{
+			free(buffer);
+			dprintf(2, "Error: Can't read from file %s\n", a1);
+			return(98);
+		}
+		w = write(fd2, buffer, r);
+		if (w < 0)
+		{
+			free(buffer);
+			dprintf(2, "Error: Can't write to %s\n", a2);
+			return(99);
+		}
+	}
+	return (1);
 }
 /**
  * main - Copy the content of a file to another file
@@ -17,7 +49,7 @@ int main(int ac, char **av)
 {
 	int fd1, fd2;
 	char *buffer;
-	int r = -1, w;
+	int n;
 
 	if (ac != 3)
 	{
@@ -37,29 +69,15 @@ int main(int ac, char **av)
 		exit(99);
 	}
 	buffer = malloc(1024);
-	if (!buffer)
+	/* if (!buffer)
 	{
 		close(fd1);
 		close(fd2);
 		exit(1);
-	}
-	while (r != 0)
-	{
-		r = read(fd1, buffer, 1024);
-		if (r < 0)
-		{
-			free(buffer);
-			dprintf(2, "Error: Can't read from file %s\n", av[1]);
-			exit(98);
-		}
-		w = write(fd2, buffer, r);
-		if (w < 0)
-		{
-			free(buffer);
-			dprintf(2, "Error: Can't write to %s\n", av[2]);
-			exit(99);
-		}
-	}
+	} */
+	n = copy_file(&fd1, &fd2, &buffer, av[1], av[2]);
+	if (n != 1)
+		exit(n);
 	if (close(fd1) < 0)
 		exit(handle_close(fd1, &buffer));
 	if (close(fd2) < 0)
