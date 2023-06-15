@@ -2,7 +2,7 @@
 #include <stdio.h>
 size_t print_dlistint(const dlistint_t *h)
 {
-	int c = 0;
+	size_t c = 0;
 
 	if (h)
 	{
