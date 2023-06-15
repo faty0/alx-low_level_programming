@@ -1,8 +1,10 @@
 #include "lists.h"
- /**
-  * free_dlistint - frees a list
-  * @head: pointer to head of list to free
-  */
+
+/**
+ * free_dlistint - frees a list
+ * @head: pointer to first node
+ */
+
 void free_dlistint(dlistint_t *head)
 {
 	dlistint_t *tmp;
@@ -13,5 +15,4 @@ void free_dlistint(dlistint_t *head)
 		free(tmp);
 		head = head->next;
 	}
-	head = NULL;
 }
