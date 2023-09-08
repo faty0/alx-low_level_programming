@@ -10,7 +10,7 @@ int main(void)
     hash_table_t *ht;
 	unsigned long int i;
 
-    ht = hash_table_create(1024);
+    ht = hash_table_create(0);
     printf("%p\n", (void *)ht);
 	printf("Table size is: %ld\n", ht->size);
 	for (i = 0; i < ht->size; i++)
