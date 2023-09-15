@@ -2,6 +2,7 @@
 
 /**
  * hash_table_delete -  deletes a hash table
+ * @ht:  is the hash table
 */
 void hash_table_delete(hash_table_t *ht)
 {
@@ -15,21 +16,20 @@ void hash_table_delete(hash_table_t *ht)
 		{
 			if (ht->array[i])
 			{
-				nex = ht->array[i];
 				tofree = ht->array[i];
-				while (nex)
+				while (tofree)
 				{
-					if (tofree->key)
-						free(tofree->key);
-					if (tofree->value)
-						free(tofree->value);
+					nex = tofree->next;
+					free(tofree->key);
+					free(tofree->value);
 					free(tofree);
-					tofree = nex->next;
-					nex = nex->next;
+					tofree = NULL;
+					tofree = nex;
 				}
-				free(nex);
+				nex = NULL;
 			}
 		}
 		free(ht);
+		ht = NULL;
 	}
 }
